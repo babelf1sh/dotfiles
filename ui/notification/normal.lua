@@ -16,11 +16,11 @@ end)
 
 --[[ switches to discord from notification
 	 ruled.notification.append_rule {
-		  rule		 = {app_name = "discord"},
+		  rule		 = {app_name = 'discord'},
 		  properties = {
 				append_actions = {
 					naughty.action {
-						 name = "",
+						 name = '',
 					},
 				},
 		  }

@@ -9,18 +9,6 @@ return function(s)
 	 -- promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
 
-	 -- Create an imagebox widget which will contain an icon indicating which layout we're using.
-    -- We need one layoutbox per screen.
-    s.mylayoutbox = awful.widget.layoutbox {
-        screen  = s,
-        buttons = {
-            awful.button({ }, 1, function () awful.layout.inc( 1) end),
-            awful.button({ }, 3, function () awful.layout.inc(-1) end),
-            awful.button({ }, 4, function () awful.layout.inc(-1) end),
-            awful.button({ }, 5, function () awful.layout.inc( 1) end),
-        }
-    } 
-
 	 -- textclock widget
     s.my_textclock = wibox.widget {
         format = '%H:%M',
@@ -42,7 +30,7 @@ return function(s)
 		  {
 				layout = wibox.container.margin,
             left = 10,
-            s.mytaglist,
+            module.taglist(s),
 		  },
 		  	  -- middle widget
 		  {
@@ -50,7 +38,7 @@ return function(s)
             halign = "center",
             s.my_textclock,
 		  },
-			 --[[ battery widget
+			 -- battery widget
 		  {
 				layout = wibox.container.margin,
             right = 10,
@@ -76,7 +64,7 @@ return function(s)
                 warn_full_battery = true,
                 full_battery_icon = "~/.config/awesome/battery-widget/icons/full-charged.png",
             }, 
-		  },]]
+		  },
 	  }
   })
 end
