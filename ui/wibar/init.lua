@@ -30,7 +30,6 @@ return function(s)
     -- Create the wibox
     s.mywibox = awful.wibar({ 
         position = 'top',
-		  ontop = true,
         stretch = true,
         -- width = 150,
         margins = 5,
