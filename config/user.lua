@@ -1,9 +1,4 @@
 local awful = require('awful')
-local beautiful = require('beautiful')
-local dpi = beautiful.xresources.apply_dpi
-local gears = require('gears')
-
-local walls = gears.filesystem.get_configuration_dir() .. 'theme/walls/'
 
 return {
 
@@ -15,5 +10,4 @@ return {
 		awful.layout.suit.tile.top,
 	},
 
-	wallpaper = walls .. 'indigo_hydrangeas.jpg',
 }

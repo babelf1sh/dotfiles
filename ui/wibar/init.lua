@@ -6,9 +6,6 @@ local battery_widget = require("battery-widget")
 
 return function(s)
    
-	 -- promptbox for each screen
-    s.mypromptbox = awful.widget.prompt()
-
 	 -- textclock widget
     s.my_textclock = wibox.widget {
         format = '%H:%M',
