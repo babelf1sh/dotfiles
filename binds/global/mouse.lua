@@ -1,5 +1,5 @@
-local awful = require("awful")
-local widgets = require("ui")
+local awful = require('awful')
+local widgets = require('ui')
 
 awful.mouse.append_global_mousebindings({
     awful.button({ }, 3, function () widgets.menu.main:toggle() end),

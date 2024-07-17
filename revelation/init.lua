@@ -12,13 +12,13 @@
 --
 
 
-local beautiful    = require("beautiful")
-local wibox        = require("wibox")
+local beautiful    = require('beautiful')
+local wibox        = require('wibox')
 local awful        = require('awful')
 local aw_rules     = require('awful.rules')
 local pairs        = pairs
 local setmetatable = setmetatable
-local naughty      = require("naughty")
+local naughty      = require('naughty')
 local table        = table
 local clock        = os.clock
 local tostring     = tostring
@@ -36,11 +36,11 @@ local capi         = {
 -- It seems there is not way to pass err handling function into the delayed_call()
 
 local function debuginfo(message)
-    message = message or "No information available"
+    message = message or 'No information available'
     nid = naughty.notify({ text = tostring(message), timeout = 10 })
 end
 
-local delayed_call = (type(timer) ~= 'table' and  require("gears.timer").delayed_call)
+local delayed_call = (type(timer) ~= 'table' and  require('gears.timer').delayed_call)
 
 local view_only_func
 local toggle_tag_func
@@ -66,9 +66,9 @@ local clientData = {} -- table that holds the positions and sizes of floating cl
 
 local revelation = {
     -- Name of expose tag.
-    tag_name = "revelation",
+    tag_name = 'revelation',
 
-    charorder = "1234567890",
+    charorder = '1234567890',
 
     -- Match function can be defined by user.
     -- Must accept a `rule` and `client` and return `boolean`.
@@ -112,7 +112,7 @@ local function selectfn(_, t, zt)
         -- Focus and raise
         --
         if type(delayed_call) == 'function' then
-            capi.awesome.emit_signal("refresh")
+            capi.awesome.emit_signal('refresh')
         end
 
         if awful.util.table.hasitem(hintindex, c) then
@@ -139,11 +139,11 @@ local function match_clients(rule, _clients, t, is_excluded)
         if mf(c, rule) then
             -- Store geometry before setting their tags
             clientData[c] = {}
-            clientData[c]["geometry"] = c:geometry()
-            flt = awful.client.property.get(c, "floating")
+            clientData[c]['geometry'] = c:geometry()
+            flt = awful.client.property.get(c, 'floating')
             if flt ~= nil then
-                clientData[c]["floating"] = flt
-                awful.client.property.set(c, "floating", false)
+                clientData[c]['floating'] = flt
+                awful.client.property.set(c, 'floating', false)
             end
 
 
@@ -164,7 +164,7 @@ end
 
 -- Implement Exposé (ala Mac OS X).
 --
--- @param rule A table with key and value to match. [{class=""}]
+-- @param rule A table with key and value to match. [{class=''}]
 function revelation.expose(args)
     args = args or {}
     local rule = args.rule or {}
@@ -180,7 +180,7 @@ function revelation.expose(args)
     for scr=1,capi.screen.count() do
         t[scr] = awful.tag.new({revelation.tag_name},
             scr, awful.layout.suit.fair)[1]
-        zt[scr] = awful.tag.new({revelation.tag_name.."_zoom"},
+        zt[scr] = awful.tag.new({revelation.tag_name..'_zoom'},
             scr, awful.layout.suit.fair)[1]
 
         if curr_tag_only then
@@ -193,9 +193,9 @@ function revelation.expose(args)
     end
 
     if type(delayed_call) == 'function' then
-        capi.awesome.emit_signal("refresh")
+        capi.awesome.emit_signal('refresh')
     end
-    -- No need for awesome WM 3.5.6: capi.awesome.emit_signal("refresh")
+    -- No need for awesome WM 3.5.6: capi.awesome.emit_signal('refresh')
     --
     local status, err=pcall(revelation.expose_callback, t, zt, clients) 
 
@@ -230,10 +230,10 @@ function revelation.restore(t, zt)
             if clientData[c] then
                 for k,v in pairs(clientData[c]) do
                     if v ~= nil then
-                        if k== "geometry" then
+                        if k== 'geometry' then
                             c:geometry(v)
-                        elseif k == "floating" then
-                            awful.client.property.set(c, "floating", v)
+                        elseif k == 'floating' then
+                            awful.client.property.set(c, 'floating', v)
                         else
                             c[k]=v
                         end
@@ -294,9 +294,9 @@ function revelation.expose_callback(t, zt, clientlist)
 
     capi.keygrabber.run(function (mod, key, event) 
         local c
-        if event == "release" then return true end
+        if event == 'release' then return true end
 
-        if awful.util.table.hasitem(mod, "Shift") then
+        if awful.util.table.hasitem(mod, 'Shift') then
             key_char = string.lower(key)
             c = hintindex[key_char]
             if not zoomed and c ~= nil then
@@ -308,7 +308,7 @@ function revelation.expose_callback(t, zt, clientlist)
                 zoomed = true
                 -- update the position of this hintbox, since it is zoomed
                 if type(delayed_call) == 'function' then 
-                    capi.awesome.emit_signal("refresh")
+                    capi.awesome.emit_signal('refresh')
                 end
                 hintbox_pos(key_char)
                 hintbox_display_toggle(key_char, false)
@@ -319,7 +319,7 @@ function revelation.expose_callback(t, zt, clientlist)
                 toggle_tag_func(zt[zoomedClient.screen.index or zoomedClient.screen], zoomedClient)
                 hintbox_display_toggle(key_char_zoomed,  true)
                 if type(delayed_call) == 'function' then 
-                    capi.awesome.emit_signal("refresh")
+                    capi.awesome.emit_signal('refresh')
                 end
                 hintbox_pos(key_char_zoomed) 
 
@@ -342,13 +342,13 @@ function revelation.expose_callback(t, zt, clientlist)
             return false
         end
 
-        if key == "Escape" then
+        if key == 'Escape' then
             if zoomedClient ~= nil then 
                 awful.tag.history.restore(zoomedClient.screen)
                 toggle_tag_func(zt[zoomedClient.screen.index or zoomedClient.screen], zoomedClient)
                 hintbox_display_toggle(string.lower(key),  true)
                 if type(delayed_call) == 'function' then 
-                    capi.awesome.emit_signal("refresh")
+                    capi.awesome.emit_signal('refresh')
                 end
                 hintbox_pos(key_char_zoomed) 
 
@@ -440,7 +440,7 @@ function revelation.expose_callback(t, zt, clientlist)
                 if key_char ~= nil then 
                     hintbox_display_toggle(key_char, false)
                     if type(delayed_call) == 'function' then 
-                        capi.awesome.emit_signal("refresh")
+                        capi.awesome.emit_signal('refresh')
                     end
                     hintbox_pos(key_char) 
                 end
@@ -452,7 +452,7 @@ function revelation.expose_callback(t, zt, clientlist)
                 toggle_tag_func(zt[zoomedClient.screen.index or zoomedClient.screen], zoomedClient)
                 hintbox_display_toggle(key_char_zoomed, true)
                 if type(delayed_call) == 'function' then 
-                    capi.awesome.emit_signal("refresh")
+                    capi.awesome.emit_signal('refresh')
                 end
                 hintbox_pos(key_char_zoomed) 
 
@@ -466,7 +466,7 @@ function revelation.expose_callback(t, zt, clientlist)
         --Strange but on my machine only fleur worked as a string.
         --stole it from
         --https://github.com/Elv13/awesome-configs/blob/master/widgets/layout/desktopLayout.lua#L175
-    end,"fleur")
+    end,'fleur')
 
 end
 
@@ -499,7 +499,7 @@ function revelation.init(args)
         letterbox[char] = wibox.widget.textbox()
         letterbox[char]:set_markup(char.upper(char))
         letterbox[char]:set_font(revelation.font)
-        letterbox[char]:set_align("center")
+        letterbox[char]:set_align('center')
         hintbox[char]:set_widget(letterbox[char])
     end
 end
