@@ -2,5 +2,4 @@
 -- to each
 return {
    taglist   = require(... .. '.taglist'),
-   tasklist  = require(... .. '.tasklist'),
 }
