@@ -1,3 +1,4 @@
 return {
-	layout        = require(... .. '.bling') 
+	bling        = require(... .. '.bling'),
+	revelation   = require(... .. '.revelation')
 }

@@ -7,7 +7,7 @@ local modkey = mod.modkey
 local apps    = require('config.apps')
 local widgets = require('ui')
 
-local revelation = require('revelation')
+local revelation = require('module.revelation')
 revelation.init()
 
 local bling = require('module.bling')
