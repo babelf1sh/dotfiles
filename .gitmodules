@@ -7,6 +7,3 @@
 [submodule "module/revelation"]
 	path = module/revelation
 	url = https://github.com/guotsuan/awesome-revelation.git
-[submodule "new-revelation"]
-	path = module/revelation
-	url = https://github.com/guotsuan/awesome-revelation.git
