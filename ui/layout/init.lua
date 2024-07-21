@@ -1,7 +1,8 @@
-local gears = require("gears")
 local awful = require("awful")
+local gears = require("gears")
 local wibox = require("wibox")
 local beautiful = require("beautiful")
+local dpi = beautiful.xresources.apply_dpi
 
 local mod = require('binds.mod')
 local modkey = mod.modkey
@@ -17,17 +18,17 @@ local ll = awful.widget.layoutlist {
         {
             {
                 id            = 'icon_role',
-                forced_height = 22,
-                forced_width  = 22,
+                forced_height = dpi(5),
+                forced_width  = dpi(5),
                 widget        = wibox.widget.imagebox,
             },
             margins = 5,
             widget  = wibox.container.margin,
         },
         id              = 'background_role',
-        forced_width    = 50,
-        forced_height   = 50,
-        shape           = gears.shape.rounded_rect,
+        forced_width    = dpi(40),
+        forced_height   = dpi(40),
+		  shape           = gears.shape.rounded_rect,
         widget          = wibox.container.background,
     },
 }
@@ -38,7 +39,7 @@ local layout_popup = awful.popup {
         margins = 10,
         widget  = wibox.container.margin,
     },
-    border_color = beautiful.popup_border_color,
+	 border_color = beautiful.popup_border_color,
     border_width = beautiful.popup_border_width,
     placement    = awful.placement.centered,
     ontop        = true,

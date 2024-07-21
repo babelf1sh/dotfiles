@@ -17,7 +17,7 @@ menu.main = awful.menu({
 	items = {
 			{ 'files', apps.files },
          { 'config', apps.editor_cmd .. ' ~/.config/awesome/' },
-			{ 'menu', menu.awesome, beautiful.awesome_icon },
+			{ 'menu', menu.awesome },
       }
 })
 

@@ -1,4 +1,5 @@
 local awful = require('awful')
+local gfs   = require('gears.filesystem')
 
 local mod    = require('binds.mod')
 local modkey = mod.modkey
@@ -8,6 +9,9 @@ local widgets = require('ui')
 
 local revelation = require('revelation')
 revelation.init()
+
+local bling = require('module.bling')
+local launcher = require('ui.launcher')
 
 awful.keyboard.append_global_keybindings({
 
@@ -76,8 +80,10 @@ awful.keyboard.append_global_keybindings({
               {description = 'quit awesome', group = 'awesome'}),
    awful.key({ modkey,           }, 'Return', function () awful.spawn(apps.terminal) end,
               {description = 'open a terminal', group = 'launcher'}),
-   awful.key({ modkey },            'Tab', function() require('menubar').show() require('menubar').refresh() end,
-    			  {description = 'show the menubar', group = 'launcher'}),
+	awful.key({ modkey, 				}, 'Tab', function() local app_launcher = bling.widget.app_launcher(launcher) app_launcher:toggle() end,
+				  {description = 'toggle app launcher', group = 'launcher'}),
+   --[[awful.key({ modkey },            'Tab', function() require('menubar').show() require('menubar').refresh() end,
+    			  {description = 'show the menubar', group = 'launcher'}), ]]
 
 	-- Tags related keybindings
     awful.key({ modkey, 'Control' }, 'Left',   awful.tag.viewprev,

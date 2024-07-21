@@ -3,6 +3,7 @@ local wibox = require('wibox')
 
 --- The titlebar to be used on normal clients
 return function(c)
+
    -- Buttons for the titlebar.
    local buttons = {
       awful.button(nil, 1, function()
@@ -16,7 +17,8 @@ return function(c)
    -- Draws the client titlebar at the default position (top) and size.
    awful.titlebar(c).widget = wibox.widget({
       layout = wibox.layout.align.horizontal,
-      -- Left
+      
+		-- Left
       {
          layout  = wibox.layout.fixed.horizontal,
          buttons = buttons
@@ -33,7 +35,8 @@ return function(c)
       -- Right
       {
          layout = wibox.layout.fixed.horizontal,
-         awful.titlebar.widget.maximizedbutton(c),
+         awful.titlebar.widget.minimizebutton(c),
+			awful.titlebar.widget.maximizedbutton(c),
          awful.titlebar.widget.closebutton(c)
       }
    })

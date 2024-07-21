@@ -36,3 +36,7 @@ require('binds')
 
 -- Load all client rules
 require('config.rules')
+
+local bling = require('module.bling')
+
+bling.module.window_swallowing.start()

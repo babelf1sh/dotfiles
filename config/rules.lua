@@ -54,7 +54,7 @@ ruled.client.connect_signal('request::rules', function()
 					'Picture in picture',
 		},
 	  },
-	   except_any = { name = { 'File Operation Progress', 'Create New Folder', } },
+	   except_any = { name = { 'File Operation Progress', 'Create New Folder', 'Confirm to replace files' } },
 	   properties = { floating = true, width = 1500, height = 1000 }
 	  }
    

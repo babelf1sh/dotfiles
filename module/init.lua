@@ -1,3 +1,3 @@
 return {
-	layout        = require(... .. '.layout_popout') 
+	layout        = require(... .. '.bling') 
 }
